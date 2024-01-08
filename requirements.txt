@@ -12,3 +12,5 @@ pyYAML
 tqdm
 notebook
 python-box==6.0.2
+
+-e .
