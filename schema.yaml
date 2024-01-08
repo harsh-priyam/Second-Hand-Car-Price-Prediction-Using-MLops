@@ -1,0 +1,11 @@
+COLUMNS: 
+  name: object
+  company: object
+  year: int64 
+  Price: int64 
+  kms_driven: int64 
+  fuel_type: object
+
+TARGET:
+  name: Price
+                  

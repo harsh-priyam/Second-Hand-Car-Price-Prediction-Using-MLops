@@ -1,0 +1,18 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: python src/CarPrediction/pipeline/stage01_data_ingestion.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: 9f13bca3857cd6df1c79c27326699db6
+      size: 442
+    - path: src/CarPrediction/pipeline/stage01_data_ingestion.py
+      hash: md5
+      md5: 75da8e34a4dd965d962e4e25c23b6d13
+      size: 894
+    outs:
+    - path: artifacts/data_ingestion/CleanedCar_main.csv
+      hash: md5
+      md5: d4531531ba0f7fd3bf50d5e4573211a3
+      size: 41780
