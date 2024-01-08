@@ -7,4 +7,10 @@ stages:
       outs:
         - artifacts/data_ingestion/CleanedCar_main.csv
 
-  
+    data_validation:
+      cmd: python src/CarPrediction/pipeline/stage02_data_validation.py
+      deps:
+        - src/CarPrediction/pipeline/stage01_data_ingestion.py
+        - src/CarPrediction/pipeline/stage02_data_validation.py
+      outs:
+        - artifacts/data_validation/status.txt
