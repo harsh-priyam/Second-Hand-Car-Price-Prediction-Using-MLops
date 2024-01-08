@@ -5,8 +5,8 @@ stages:
     deps:
     - path: config/config.yaml
       hash: md5
-      md5: 4c4b1a65548bce71c1f91a664ab0bce4
-      size: 576
+      md5: 4ddba7c9eb74013049b21291f1a875b7
+      size: 785
     - path: src/CarPrediction/pipeline/stage01_data_ingestion.py
       hash: md5
       md5: 75da8e34a4dd965d962e4e25c23b6d13
@@ -52,3 +52,19 @@ stages:
       hash: md5
       md5: 5ea208f24607e39f0b421f5d2424ab42
       size: 31310
+  model_trainer:
+    cmd: python src/CarPrediction/pipeline/stage04_model_trainer.py
+    deps:
+    - path: src/CarPrediction/pipeline/stage03_data_transformation.py
+      hash: md5
+      md5: b9531d3c2c75f3135f95db88811f45f4
+      size: 912
+    - path: src/CarPrediction/pipeline/stage04_model_trainer.py
+      hash: md5
+      md5: 53a7b2115182b3d71ad1823f7d82dc75
+      size: 830
+    outs:
+    - path: artifacts/model_trainer/model.joblib
+      hash: md5
+      md5: 57b072a55e502e36765f8d93f5087a9a
+      size: 2591

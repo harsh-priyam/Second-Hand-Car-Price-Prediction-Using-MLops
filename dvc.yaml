@@ -23,3 +23,11 @@ stages:
       outs:
         - artifacts/data_transformation/test.csv
         - artifacts/data_transformation/train.csv
+
+    model_trainer:
+      cmd: python src/CarPrediction/pipeline/stage04_model_trainer.py
+      deps:
+        - src/CarPrediction/pipeline/stage03_data_transformation.py
+        - src/CarPrediction/pipeline/stage04_model_trainer.py
+      outs:
+        - artifacts/model_trainer/model.joblib
