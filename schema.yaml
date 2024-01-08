@@ -5,7 +5,7 @@ COLUMNS:
   Price: int64 
   kms_driven: int64 
   fuel_type: object
-
-TARGET:
+ 
+TARGET_COLUMN:
   name: Price
                   
