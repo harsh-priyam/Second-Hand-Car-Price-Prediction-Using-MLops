@@ -2,10 +2,10 @@ import pandas as pd
 import os 
 from CarPrediction import logger 
 from sklearn.linear_model import ElasticNet 
-from sklearn.preprocessing import OneHotEncoder
-from sklearn.compose import make_column_transformer
-from sklearn.pipeline import make_pipeline
 import joblib 
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
 from CarPrediction.entity.config_entity import ModelTrainerConfig
 
 
@@ -17,21 +17,31 @@ class ModelTrainer:
         train_data = pd.read_csv(self.config.train_data_path)
         test_data = pd.read_csv(self.config.test_data_path)
 
+        # Separate features and target variable
+        train_x = train_data.drop([self.config.target_column], axis=1)
+        test_x = test_data.drop([self.config.target_column], axis=1)
+        train_y = train_data[self.config.target_column]
+        test_y = test_data[self.config.target_column]
 
-        train_x = train_data.drop([self.config.target_columm],axis=1)
-        test_x = test_data.drop([self.config.target_columm],axis=1)
-        train_y = train_data[[self.config.target_columm]]
-        test_y = test_data[[self.config.target_columm]]
+        # Define a column transformer for preprocessing
+        numeric_features = train_x.select_dtypes(include=['int32']).columns
+        numeric_transformer = Pipeline(steps=[('scaler', StandardScaler())])
 
-        ohe = OneHotEncoder()
-        ohe.fit(train_data[['name','company','fuel_type']])
-        column_trans = make_column_transformer((OneHotEncoder(categories=ohe.categories_),['name','company','fuel_type']),remainder='passthrough')
-      
+        categorical_features = train_x.select_dtypes(include=['object']).columns
+        categorical_transformer = Pipeline(steps=[('onehot', OneHotEncoder(handle_unknown='ignore'))])
 
-        lr = ElasticNet(alpha=self.config.alpha, l1_ratio=self.config.l1_ratio, random_state=101)
+        preprocessor = ColumnTransformer(
+            transformers=[
+                ('num', numeric_transformer, numeric_features),
+                ('cat', categorical_transformer, categorical_features)
+            ])
 
-        pipe = make_pipeline(column_trans,lr)
+        # Combine preprocessing with the model
+        model = Pipeline(steps=[('preprocessor', preprocessor),
+                                ('model', ElasticNet(alpha=self.config.alpha, l1_ratio=self.config.l1_ratio, random_state=101))])
 
-        pipe.fit(train_x,train_y) 
+        # Fit the model
+        model.fit(train_x, train_y)
 
-        joblib.dump(lr, os.path.join(self.config.root_dir, self.config.model_name))
+        # Save the trained model
+        joblib.dump(model, os.path.join(self.config.root_dir, self.config.model_name))

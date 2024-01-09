@@ -31,4 +31,4 @@ class ModelTrainerConfig:
     model_name: str 
     alpha: float 
     l1_ratio: float 
-    target_columm: int 
+    target_column: str 

@@ -5,8 +5,8 @@ stages:
     deps:
     - path: config/config.yaml
       hash: md5
-      md5: 4ddba7c9eb74013049b21291f1a875b7
-      size: 785
+      md5: 1d1822feec7b60d682119d7c5ed12d80
+      size: 1025
     - path: src/CarPrediction/pipeline/stage01_data_ingestion.py
       hash: md5
       md5: 75da8e34a4dd965d962e4e25c23b6d13

@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/aarav/Downloads/Second-Hand-Car-Price-Prediction-Using-MLops/mlruns/0/411fd61bdb1740538241a64082c3e09f/artifacts
+end_time: 1704792798735
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 411fd61bdb1740538241a64082c3e09f
+run_name: bouncy-ray-635
+run_uuid: 411fd61bdb1740538241a64082c3e09f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1704792790984
+status: 3
+tags: []
+user_id: HarshPriyam

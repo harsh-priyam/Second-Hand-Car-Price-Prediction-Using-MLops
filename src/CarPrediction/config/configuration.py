@@ -72,7 +72,7 @@ class ConfigurationManager:
                 model_name= config.model_name,
                 alpha = params.alpha,
                 l1_ratio=params.l1_ratio,
-                target_columm= schema.name
+                target_column= schema.name
           )
 
           return model_trainer_config
