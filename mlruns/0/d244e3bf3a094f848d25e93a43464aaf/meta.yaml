@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/aarav/Downloads/Second-Hand-Car-Price-Prediction-Using-MLops/mlruns/0/d244e3bf3a094f848d25e93a43464aaf/artifacts
+end_time: 1704828975995
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: d244e3bf3a094f848d25e93a43464aaf
+run_name: dapper-shoat-343
+run_uuid: d244e3bf3a094f848d25e93a43464aaf
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1704828970899
+status: 3
+tags: []
+user_id: HarshPriyam
