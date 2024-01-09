@@ -31,3 +31,14 @@ stages:
         - src/CarPrediction/pipeline/stage04_model_trainer.py
       outs:
         - artifacts/model_trainer/model.joblib
+
+    model_evaluation:
+      cmd: python src/CarPrediction/pipeline/stage05_model_evaluation.py
+      deps:
+        - src/CarPrediction/pipeline/stage03_data_transformation.py
+        - src/CarPrediction/pipeline/stage04_model_trainer.py
+        - src/CarPrediction/pipeline/stage05_model_evaluation.py
+      outs:
+        - artifacts/model_evaluation/metrics.json 
+        
+

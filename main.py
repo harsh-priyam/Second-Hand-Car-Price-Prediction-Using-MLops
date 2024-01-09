@@ -3,6 +3,7 @@ from CarPrediction.pipeline.stage01_data_ingestion import DataIngestionTrainingP
 from CarPrediction.pipeline.stage02_data_validation import DataValidationTrainingPipeline
 from CarPrediction.pipeline.stage03_data_transformation import DataTransformationTrainingPipeline
 from CarPrediction.pipeline.stage04_model_trainer import ModelTrainerPipeline
+from CarPrediction.pipeline.stage05_model_evaluation import ModelEvaluationPipeline
 
 STAGE_NAME = "Data Ingestion stage"
 
@@ -14,7 +15,6 @@ try:
 except Exception as e:
         logger.exception(e)
         raise e
-
 
 
 STAGE_NAME = "Data Validation stage"
@@ -48,6 +48,19 @@ STAGE_NAME = "Model Trainer stage"
 try:
         logger.info(f">>>>> stage {STAGE_NAME} started")
         obj = ModelTrainerPipeline()
+        obj.main()
+        logger.info(f">>>>> stage {STAGE_NAME} completed <<<<<\n\nx===========x")
+except Exception as e:
+        logger.exception(e)
+        raise e
+
+
+
+STAGE_NAME = "Model Evaluation stage"
+
+try:
+        logger.info(f">>>>> stage {STAGE_NAME} started")
+        obj = ModelEvaluationPipeline()
         obj.main()
         logger.info(f">>>>> stage {STAGE_NAME} completed <<<<<\n\nx===========x")
 except Exception as e:

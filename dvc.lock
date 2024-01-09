@@ -46,12 +46,12 @@ stages:
     outs:
     - path: artifacts/data_transformation/test.csv
       hash: md5
-      md5: 86933d8daadb6239b8fe0a6af52e2cb0
-      size: 10516
+      md5: 0c1d821b6080ae317412e49fb5aee851
+      size: 10581
     - path: artifacts/data_transformation/train.csv
       hash: md5
-      md5: 5ea208f24607e39f0b421f5d2424ab42
-      size: 31310
+      md5: 6f79d020d1c1e8ca61ebc9b3caa03dab
+      size: 31245
   model_trainer:
     cmd: python src/CarPrediction/pipeline/stage04_model_trainer.py
     deps:
@@ -66,5 +66,25 @@ stages:
     outs:
     - path: artifacts/model_trainer/model.joblib
       hash: md5
-      md5: 57b072a55e502e36765f8d93f5087a9a
-      size: 2591
+      md5: b3b2f3f45269773678f6929b2c455307
+      size: 11144
+  model_evaluation:
+    cmd: python src/CarPrediction/pipeline/stage05_model_evaluation.py
+    deps:
+    - path: src/CarPrediction/pipeline/stage03_data_transformation.py
+      hash: md5
+      md5: b9531d3c2c75f3135f95db88811f45f4
+      size: 912
+    - path: src/CarPrediction/pipeline/stage04_model_trainer.py
+      hash: md5
+      md5: 53a7b2115182b3d71ad1823f7d82dc75
+      size: 830
+    - path: src/CarPrediction/pipeline/stage05_model_evaluation.py
+      hash: md5
+      md5: ec5c77f92efd44c86d905b450cc609c8
+      size: 865
+    outs:
+    - path: artifacts/model_evaluation/metrics.json
+      hash: md5
+      md5: 98c94dae1d7aec55a6d8427e000d70e1
+      size: 99

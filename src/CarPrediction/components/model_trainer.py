@@ -1,7 +1,7 @@
 import pandas as pd
 import os 
 from CarPrediction import logger 
-from sklearn.linear_model import ElasticNet 
+from sklearn.linear_model import LinearRegression
 import joblib 
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.compose import ColumnTransformer
@@ -38,10 +38,11 @@ class ModelTrainer:
 
         # Combine preprocessing with the model
         model = Pipeline(steps=[('preprocessor', preprocessor),
-                                ('model', ElasticNet(alpha=self.config.alpha, l1_ratio=self.config.l1_ratio, random_state=101))])
+                                ('model', LinearRegression(fit_intercept=self.config.fit_intercept, copy_X =self.config.copy_X,positive=self.config.positive))])
 
         # Fit the model
         model.fit(train_x, train_y)
 
         # Save the trained model
         joblib.dump(model, os.path.join(self.config.root_dir, self.config.model_name))
+
